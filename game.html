@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissor</title>
+    <link rel="stylesheet" href="./game.css">
+</head>
+
+
+<body>
+
+        <nav class="head">
+            <h1>STONE PAPER SCISSOR</h1>
+        </nav>
+      <section id="img">
+        <div  id="all">
+           <img src="asset/all.png" alt="">
+           <h2 class="res">Player</h2>
+        </div>
+        <div id="random">
+          <img src="asset/all.png" >
+          <h2 class="res">Computer</h2>
+        </div>
+
+      </section>
+      <section id="but">
+        <button><img  src="asset/stone.png" alt="Stone"></button>
+        <button><img  src="asset/paper.jpg" alt="Paper"></button>
+        <button><img src="asset/scissors.png"  alt="Scissors"></button>
+
+      </section>
+      
+
+    <script>
+        let img=["<img src='asset/stone.png'>","<img src='asset/paper.jpg' >","<img src='asset/scissors.png'>"]
+        let random=img[Math.floor(Math.random()*img.length)]
+        let button=document.querySelectorAll("button")
+       let click=document.getElementById("random")
+        
+        button.forEach((elem)=>{
+            elem.addEventListener("click",()=>{
+                let changeran=document.getElementById("all")
+                changeran.innerHTML=random
+               click.innerHTML=elem.innerHTML
+               if((changeran.innerHTML===click.innerHTML)||(( click.querySelector('img').getAttribute('src') === "asset/paper.jpg")&&(changeran.querySelector('img').getAttribute('src') === "asset/paper.jpg" ))){
+
+                console.log("draw")
+                setInterval(() => {
+                    changeran.innerHTML="<img src='asset/draw.png'  >"
+                click.innerHTML="<img src='asset/draw.png'   >"
+                    
+                  }, 1000);
+                     
+                   
+               }
+               else if ((changeran.querySelector('img').getAttribute('src') === "asset/stone.png" && click.querySelector('img').getAttribute('src') === "asset/paper.jpg") ||(changeran.querySelector('img').getAttribute('src') === "asset/paper.jpg" && click.querySelector('img').getAttribute('src') === "asset/scissors.png") ||
+               (changeran.querySelector('img').getAttribute('src') === "asset/scissors.png" && click.querySelector('img').getAttribute('src') === "asset/stone.png")) {
+                setInterval(() => {
+                    changeran.innerHTML="<img src='asset/you won.png'  >"
+                  click.innerHTML="<img src='asset/you won.png'   >"
+                    
+                }, 1000);
+                  
+                 console.log("you won");
+                }
+      
+               else{
+                console.log("you loose");
+                setInterval(() => {
+                       changeran.innerHTML="<img src='asset/lose.png'  >"
+                       click.innerHTML="<img src='asset/lose.png'   >"
+                    
+                },1000);
+             
+                
+               }
+
+            })
+          setInterval(() => {
+            location.reload()
+           }, 3000);
+        })
+    
+       
+        
+ 
+       
+        
+        
+          
+    </script>
+</body>
+</html>
